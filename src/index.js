@@ -11,6 +11,11 @@ app.use(express.urlencoded({
 }))
 app.use(express.json())
 
+const route = require('./routes')
+
+//route init
+route(app)
+
 //HTTP logger
 //app.use(morgan('combined'))
 
@@ -18,26 +23,11 @@ app.use(express.json())
 app.engine('.hbs', engine({ defaultLayout: 'main', extname: '.hbs' }));
 app.set('view engine', '.hbs');
 app.set('views', path.join(__dirname, 'resources/views'));
+
+//Action ---> Dispatcher ---> Function handler
+
 //route định nghĩa tuyên đường dẫn trang chính
-app.get('/home', (req, res) => {
-  res.render('home')
-})
 
-app.get('/news', (req, res) => {
-  res.render('news')
-})
-
-app.get('/search', (req, res) => {
-  // console.log(req.query)
-  res.render('search')
-})
-
-app.post('/search', (req, res) => {
-
-  console.log(req.body)
-
-  res.send('')
-})
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
