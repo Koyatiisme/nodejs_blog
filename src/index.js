@@ -1,20 +1,22 @@
-const express = require('express') 
-const morgan = require('morgan')
-const path = require('path')
+const express = require('express');
+const morgan = require('morgan');
+const path = require('path');
 const { engine } = require('express-handlebars');
-const app = express()
-const port = 2101
+const app = express();
+const port = 2101;
 
-app.use(express.static(path.join(__dirname, 'public')))
-app.use(express.urlencoded({
-  extended: true
-}))
-app.use(express.json())
+app.use(express.static(path.join(__dirname, 'public')));
+app.use(
+    express.urlencoded({
+        extended: true,
+    }),
+);
+app.use(express.json());
 
-const route = require('./routes')
+const route = require('./routes');
 
 //route init
-route(app)
+route(app);
 
 //HTTP logger
 //app.use(morgan('combined'))
@@ -28,7 +30,6 @@ app.set('views', path.join(__dirname, 'resources/views'));
 
 //route định nghĩa tuyên đường dẫn trang chính
 
-
 app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`)
-})
+    console.log(`Example app listening on port ${port}`);
+});
